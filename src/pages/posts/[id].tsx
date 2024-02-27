@@ -2,6 +2,7 @@ import Head from "next/head";
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "@/lib/post";
 import { parseISO, format } from "date-fns";
+import Helper from "@/lib/helper";
 
 type propsType = { postData: { id: string; contentHtml: string; date?: string; title?: string } };
 export default function Post({ postData }: propsType) {
@@ -14,7 +15,7 @@ export default function Post({ postData }: propsType) {
             <br />
             {postData.id}
             <br />
-            <time dateTime={postData.date}>{postData.date ? format(parseISO(postData.date), "LLLL d, yyyy") : ""}</time>;
+            <time dateTime={postData.date}>{Helper.isoDateToFormat(postData.date, "E. d LLLL yyyy")}</time>;
             <br />
             <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </Layout>

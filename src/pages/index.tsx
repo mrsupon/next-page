@@ -2,6 +2,7 @@ import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "@/lib/post";
+import Helper from "@/lib/helper";
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 
@@ -30,7 +31,7 @@ export default function Home({ allPostsData }: propsType) {
                             <Link href={`/posts/${id}`}>{title}</Link>
                             <br />
                             <small className={utilStyles.lightText}>
-                                <time dateTime={date}>{date ? format(parseISO(date), "LLLL d, yyyy") : ""}</time>;
+                                <time dateTime={date}>{Helper.isoDateToFormat(date, "LLLL d, yyyy")}</time>;
                             </small>
                         </li>
                     ))}
